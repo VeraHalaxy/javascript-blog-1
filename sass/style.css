@@ -19,6 +19,10 @@ body {
   margin: 0 auto;
 }
 
+section {
+  height: 70vh;
+}
+
 .section-title {
   font-size: 22px;
   text-transform: uppercase;
