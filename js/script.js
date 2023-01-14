@@ -15,7 +15,9 @@ function titleClickHandler(event){
       activeLink.classList.remove('active');
    }
 
-  /* [IN PROGRESS] add class 'active' to the clicked link */
+  /* [DONE] add class 'active' to the clicked link */
+   const addActiveLinks = clickedElement;
+   addActiveLinks.classList.add('active');
    console.log('clickedElement: ',clickedElement);
 
   /* [DONE] remove class 'active' from all articles */
@@ -35,11 +37,10 @@ function titleClickHandler(event){
    console.log(targetArticle);
 
   /* [DONE] add class 'active' to the correct article */
-   clickedElement.classList.add('active');
+   targetArticle.classList.add('active');
 }
 
-const links = document.querySelectorAll('.titles a').addEventListener('click',titleClickHandler());
-console.log(links);
+const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
    link.addEventListener('click', titleClickHandler);
@@ -62,36 +63,38 @@ function generateTitleLinks(){
    console.log|(articles);
 
    for(let article of articles){
-      article.innerHTML = '';
    
       /* get the article id */
-      const articleId = titleList.getAttribute('id');
+      const articleId = article.id;
       console.log(articleId);
 
       /* find the title element */
-      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+      const articleTitle = article.querySelector(optTitleSelector);
       console.log(articleTitle);
 
+      const getTitle = articleTitle.innerHTML;
+      console.log(getTitle);
+
       /* get the title from the title element */
+      const linkHTML = '';
       titleList.innerHTML = titleList.innerHTML + linkHTML;
 
       /* create HTML of the link */
-      /*titleList.insertAdjacentHTML(
-         'afterbegin',
-         '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>'
-      );*/
-
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-      console.log(linkHTML);
-
-      /* insert link into titleList */
       html = html + linkHTML;
       console.log(html);
+
+      /* insert link into titleList */
+      titleList.insertAdjacentHTML(
+         "beforeend",
+         `
+         <li>
+         <a href= "#${articleId}">
+         <span>${getTitle}</span>
+         </a>
+         </li>
+         `
+      );
    }
-
-   titleList.innerHTML = html;
-
-   console.log(generateTitleLinks);
 }
 
 generateTitleLinks();
