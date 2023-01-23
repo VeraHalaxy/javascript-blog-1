@@ -92,7 +92,7 @@ titleList.innerHTML = '';
 
 generateTitleLinks();
 
-function generateTags(customSelector = ''){
+function generateTags(customSelector = ' '){
    
    console.log(customSelector);
    
@@ -135,14 +135,13 @@ function generateTags(customSelector = ''){
 
         /* [NEW] add generated code to allTags array */
          allTags.push(linkHTML);
-      }
-         tagsList.innerHTML = tagsList.innerHTML + html;
-      
+
       /* END LOOP: for each tag */
       }
       /* insert HTML of all the links into the tags wrapper */
+      tagsList.innerHTML = tagsList.innerHTML + html;
       console.log(tagsList);
-
+      }
    /* END LOOP: for every article: */
    } 
    /* [NEW] find list of tags in right column */
