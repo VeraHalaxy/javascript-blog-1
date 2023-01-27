@@ -100,8 +100,8 @@ function generateTags(customSelector = ' '){
    
    console.log(customSelector);
    
-   /* [NEW] create a new variable allTags with an empty array */
-   let allTags = [];
+   /* [NEW] create a new variable allTags with an empty object */
+   let allTags = {};
 
    /* find all articles */
    const articles = document.querySelectorAll(optArticleSelector + customSelector);
@@ -135,13 +135,16 @@ function generateTags(customSelector = ' '){
          console.log(linkHTML);
 
          /* [NEW] check if this link is NOT already in allTags */
-         if(allTags.indexOf(linkHTML) == -1){
+         if(!allTags.hasOwnProperty(tag)){
 
-        /* [NEW] add generated code to allTags array */
-         allTags.push(linkHTML);
+        /* [NEW] add generated code to allTags object */
+         allTags[tag] = 1;
+         } else {
+         allTags[tag]++;
+         }
 
       /* END LOOP: for each tag */
-      }
+
       /* insert HTML of all the links into the tags wrapper */
       tagsList.innerHTML = tagsList.innerHTML + html;
       console.log(tagsList);
@@ -152,7 +155,14 @@ function generateTags(customSelector = ' '){
    const tagList = document.querySelector(optTagsListSelector);
 
    /* [NEW] add html from allTags to tagList */
-   tagList.innerHTML = allTags.join(' ');
+   //tagList.innerHTML = allTags.join(' ');
+   console.log(allTags);
+
+   let allTagsHTML = ' ';
+   for(let tag in allTags){
+      allTagsHTML += `<a href="#tag-${tag}">`+ tag +`</a>` + ' (' + allTags[tag] +') </br>';
+   }
+   tagList.innerHTML = allTagsHTML;
 }
 
 generateTags();
