@@ -1,4 +1,7 @@
 {
+   "globals": {
+      "Handlebars": false
+   },
    "env": {
       "browser": true,
       "es6": true
